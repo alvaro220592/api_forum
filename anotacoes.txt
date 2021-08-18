@@ -1,0 +1,11 @@
+criar o projeto laravel
+clonar o laradock pra dentro dele
+copiar o .env
+mudar versao, banco e porta do mysql
+no mysql do .env do laradock tem q colocar o nome do banco de dados lá
+mudar versao do php no nginx
+mudar porta do nginx
+buildar php-fpm e nginx
+o banco de dados tem q ser criado no mysql bash
+os comandos do artisan tem q ser dados do workspace bash
+a porta do mysql no .env do projeto nao precisa alterar
