@@ -46,9 +46,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        return Post::findOrFail($id);
     }
 
     /**
@@ -58,9 +58,21 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->user_id = $request->user_id;
+
+        $result = $post->save();
+
+        if($result){
+            return ['result' => 'Dados alterados com sucesso'];
+        }else{
+            return ['result' => 'Erro ao alterar'];
+        }
     }
 
     /**
@@ -69,8 +81,16 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $result = $post->delete();
+
+        if($result){
+            return ['result' => 'Dados excluídos com sucesso'];
+        }else{
+            return ['result' => 'Erro ao excluir'];
+        }
     }
 }
